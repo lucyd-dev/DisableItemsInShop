@@ -2,7 +2,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-DisableItemsInShop-brightgreen?style=for-the-badge&logo=GitHub)](https://github.com/lucyd-dev/DisableItemsInShop/)
 [![Thunderstore Version](https://img.shields.io/thunderstore/v/LucydDemon/DisableItemsInShop?style=for-the-badge&logo=thunderstore&logoColor=white)](https://thunderstore.io/c/repo/p/LucydDemon/DisableItemsInShop/)
-[![Thunderstore Downloads](https://img.shields.io/thunderstore/dt/LucydDemon/DisableItemsInShop?style=for-the-badge&logo=thunderstore&logoColor=white)](https://thunderstore.io/c/repo/p/Zehs/REPOLib/)
+[![Thunderstore Downloads](https://img.shields.io/thunderstore/dt/LucydDemon/DisableItemsInShop?style=for-the-badge&logo=thunderstore&logoColor=white)](https://thunderstore.io/c/repo/p/LucydDemon/DisableItemsInShop/)
 
 As the title already tells, this mod disables using items inside the shop. No more flying items across the room.\
 If you like my mod, I would very appreciate if u leave a like 💜

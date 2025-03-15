@@ -33,4 +33,4 @@ target = "CHANGELOG.md"
 [publish]
 communities = [ "repo" ]
 [publish.categories]
-repo = [ "mods", "misc", "server-side" ]
+repo = [ "mods", "misc", "serverside" ]
