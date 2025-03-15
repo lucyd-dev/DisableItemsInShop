@@ -1,0 +1,36 @@
+[config]
+schemaVersion = "0.0.1"
+
+[general]
+repository = "https://thunderstore.io"
+
+[package]
+namespace = "LucydDemon"
+name = "DisableItemsInShop"
+description = "Disables using items in the store"
+websiteUrl = "https://github.com/lucyd-dev/DisableItemsInShop/"
+containsNsfwContent = false
+[package.dependencies]
+BepInEx-BepInExPack = "5.4.2100"
+
+[build]
+icon = "./icon.png"
+readme = "../README.md"
+outdir = "../../Packages"
+
+[[build.copy]]
+source = "../bin/Release/netstandard2.1/lucyddemon.disableitemsinshop.dll"
+target = "BepInEx/plugins/DisableItemsInShop/lucyddemon.disableitemsinshop.dll"
+
+[[build.copy]]
+source = "../LICENSE"
+target = "LICENSE"
+
+[[build.copy]]
+source = "./CHANGELOG.md"
+target = "CHANGELOG.md"
+
+[publish]
+communities = [ "repo" ]
+[publish.categories]
+repo = [ "mods", "misc", "server-side" ]
