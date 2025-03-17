@@ -9,11 +9,12 @@ If you like my mod, I would very appreciate if u leave a like 💜
 
 ## Configuration
 
-If you only want to disable grenades & mines in the shop, then change "OnlyExplosives" to "true" (default is false)
+- Disable only grenades & mines (default is false)
+- Disable the use of items also in the lobby (default is false)
 
 > [!IMPORTANT]
-> If you use a mod manager like Gale, you can change the .cfg settings in the launcher itself.\
->  In order for the .cfg file to appear, you must launch the game once after installing the mod!
+> If you use a mod manager like Gale, you can change the .cfg settings in the launcher itself or you can use [REPOConfig](https://thunderstore.io/c/repo/p/nickklmao/REPOConfig/) to change it directly ingame.\
+> In order for the .cfg file to appear, you must launch the game once after installing/updating the mod!
 
 ## Any Problems?
 

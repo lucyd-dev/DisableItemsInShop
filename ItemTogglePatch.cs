@@ -9,19 +9,15 @@ static class ItemTogglePatch
     [HarmonyPostfix]
     private static void Start_Postfix(ItemToggle __instance)
     {
-        if (!SemiFunc.RunIsShop()) return;
-
-        if (DisableItemsInShop.OnlyExplosivesConfig.Value)
-        {
-            if (__instance.name.Contains("Grenade") || __instance.name.Contains("Mine"))
-            {
-                __instance.ToggleDisable(true);
-                DisableItemsInShop.Logger.LogDebug($"Disable item usage of {__instance.name}");
-            }
+        if (!SemiFunc.RunIsShop() && (!DisableItemsInShop.DisableInLobbyConfig.Value || !SemiFunc.RunIsLobby()))
             return;
-        }
 
-        __instance.ToggleDisable(true);
-        DisableItemsInShop.Logger.LogDebug($"Disable item usage of {__instance.name}");
+        bool isExplosive = __instance.name.StartsWith("Item Grenade") || __instance.name.StartsWith("Item Mine");
+
+        if (!DisableItemsInShop.OnlyExplosivesConfig.Value || isExplosive)
+        {
+            __instance.ToggleDisable(true);
+            DisableItemsInShop.Logger.LogDebug($"Disabled item usage: {__instance.name}");
+        }
     }
 }
