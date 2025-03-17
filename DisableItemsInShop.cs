@@ -14,8 +14,8 @@ public class DisableItemsInShop : BaseUnityPlugin
     private ManualLogSource _logger => base.Logger;
     private readonly Harmony harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
 
+    public static ConfigEntry<string> DisableLevelConfig { get; private set; }
     public static ConfigEntry<bool> OnlyExplosivesConfig { get; private set; }
-    public static ConfigEntry<bool> DisableInLobbyConfig { get; private set; }
 
     private void Awake()
     {
@@ -25,17 +25,17 @@ public class DisableItemsInShop : BaseUnityPlugin
         this.gameObject.transform.parent = null;
         this.gameObject.hideFlags = HideFlags.HideAndDontSave;
 
+        DisableLevelConfig = Config.Bind(
+            "General",
+            "DisableLevel",
+            "Shop",
+            new ConfigDescription("Where should items be disabled", new AcceptableValueList<string>("Shop", "Lobby", "Both"))
+        );
         OnlyExplosivesConfig = Config.Bind(
             "General",
             "OnlyExplosives",
             false,
             new ConfigDescription("Disable only explosives items (grenades & mines)")
-        );
-        DisableInLobbyConfig = Config.Bind(
-            "General",
-            "DisableInLobby",
-            false,
-            new ConfigDescription("Disable items also in the lobby")
         );
 
         harmony.PatchAll(typeof(ItemTogglePatch));

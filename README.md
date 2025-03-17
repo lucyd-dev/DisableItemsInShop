@@ -9,8 +9,8 @@ If you like my mod, I would very appreciate if u leave a like 💜
 
 ## Configuration
 
+- Set where you want to disable items (default is "Shop")
 - Disable only grenades & mines (default is false)
-- Disable the use of items also in the lobby (default is false)
 
 > [!IMPORTANT]
 > If you use a mod manager like Gale, you can change the .cfg settings in the launcher itself or you can use [REPOConfig](https://thunderstore.io/c/repo/p/nickklmao/REPOConfig/) to change it directly ingame.\
