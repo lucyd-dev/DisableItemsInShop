@@ -2,7 +2,6 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
-using BepInEx.Configuration;
 
 namespace DisableItemsInShop;
 
@@ -13,34 +12,38 @@ public class DisableItemsInShop : BaseUnityPlugin
     internal new static ManualLogSource Logger => Instance._logger;
     private ManualLogSource _logger => base.Logger;
     private readonly Harmony harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-
-    public static ConfigEntry<string> DisableLevelConfig { get; private set; }
-    public static ConfigEntry<bool> OnlyExplosivesConfig { get; private set; }
+    internal static DisableItemsInShopConfig BoundConfig { get; private set; } = null!;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
 
         // Prevent the plugin from being deleted
-        this.gameObject.transform.parent = null;
-        this.gameObject.hideFlags = HideFlags.HideAndDontSave;
+        gameObject.transform.parent = null;
+        gameObject.hideFlags = HideFlags.HideAndDontSave;
 
-        DisableLevelConfig = Config.Bind(
-            "General",
-            "DisableLevel",
-            "Shop",
-            new ConfigDescription("Where should items be disabled", new AcceptableValueList<string>("Shop", "Lobby", "Both"))
-        );
-        OnlyExplosivesConfig = Config.Bind(
-            "General",
-            "OnlyExplosives",
-            false,
-            new ConfigDescription("Disable only explosives items (grenades & mines)")
-        );
+        BoundConfig = new DisableItemsInShopConfig(Config);
 
         harmony.PatchAll(typeof(ItemTogglePatch));
+        harmony.PatchAll(typeof(ItemMeleePatch));
+        harmony.PatchAll(typeof(ItemRubberDuckPatch));
 
         Logger.LogInfo($"{MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION} by {MyPluginInfo.PLUGIN_AUTHOR} has loaded!");
+    }
+
+    public static bool ShouldDisable()
+    {
+
+        bool inShop = SemiFunc.RunIsShop();
+        bool inLobby = SemiFunc.RunIsLobby();
+
+        return BoundConfig.Level.Value switch
+        {
+            "Shop" => inShop,
+            "Lobby" => inLobby,
+            "Both" => inShop || inLobby,
+            _ => false
+        };
     }
 
     private void OnDestroy()
