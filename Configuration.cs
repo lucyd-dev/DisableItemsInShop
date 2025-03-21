@@ -14,6 +14,7 @@ class DisableItemsInShopConfig
     public readonly ConfigEntry<bool> Guns;
     public readonly ConfigEntry<bool> Melee;
     public readonly ConfigEntry<bool> RubberDuck;
+    public readonly ConfigEntry<string> CustomItems;
 
     public DisableItemsInShopConfig(ConfigFile cfg)
     {
@@ -23,12 +24,21 @@ class DisableItemsInShopConfig
             "General",
             "DisableLevel",
             "Shop",
-            new ConfigDescription("Where should items be disabled", new AcceptableValueList<string>("Shop", "Lobby", "Both"))
+            new ConfigDescription(
+                "Where should items be disabled",
+                new AcceptableValueList<string>("Shop", "Lobby", "Both")
+            )
         );
         Explosives = cfg.Bind("General", "DisableExplosives", true);
         Guns = cfg.Bind("General", "DisableGuns", false);
         Melee = cfg.Bind("General", "DisableMelees", false);
         RubberDuck = cfg.Bind("General", "DisableRubberDuck", false);
+        CustomItems = cfg.Bind(
+            "Custom",
+            "DisableCustomItems",
+            "",
+            new ConfigDescription("Comma-separated list of item name patterns to disable. Only works for toggleable items like guns, mines, etc. (ex. Rifle, Drone, ...)")
+        );
 
         ClearOrphanedEntries(cfg);
         cfg.Save();

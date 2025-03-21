@@ -9,11 +9,17 @@ If you like my mod, I would very appreciate if u leave a like 💜
 
 ## Configuration
 
+**General:**
 - Set where you want to disable items (default: "Shop")
 - Disable explosives as grenades & mines (default: true)
 - Disable guns (default: false)
 - Disable melees (default: false)
 - Disable rubber duck (default: false)
+
+**Custom:**
+- Disable Custom Items
+  - Needs to be a comma-separated list
+  - Only works for toggleable items like the guns, mines, etc.
 
 > [!IMPORTANT]
 > If you use a mod manager like Gale, you can change the .cfg settings in the launcher itself or you can use [REPOConfig](https://thunderstore.io/c/repo/p/nickklmao/REPOConfig/) to change it directly ingame.\

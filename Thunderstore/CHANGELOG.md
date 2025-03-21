@@ -1,3 +1,6 @@
+## v1.3.0
+- Added support for disabling custom items
+
 ## v1.2.0
 
 - Added support to disable melees & rubber ducks

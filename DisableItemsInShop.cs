@@ -33,7 +33,6 @@ public class DisableItemsInShop : BaseUnityPlugin
 
     public static bool ShouldDisable()
     {
-
         bool inShop = SemiFunc.RunIsShop();
         bool inLobby = SemiFunc.RunIsLobby();
 
