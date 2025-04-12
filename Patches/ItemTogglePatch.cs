@@ -1,8 +1,8 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
 using System.Linq;
+using static DisableItemsInShop.Plugin;
 
-namespace DisableItemsInShop;
+namespace DisableItemsInShop.Patches;
 
 [HarmonyPatch(typeof(ItemToggle))]
 static class ItemTogglePatch
@@ -11,15 +11,15 @@ static class ItemTogglePatch
     [HarmonyPostfix]
     private static void Start_Postfix(ItemToggle __instance)
     {
-        if (!DisableItemsInShop.ShouldDisable()) return;
+        if (!IsInDisabledLevel) return;
 
         string Name = __instance.name;
-        DisableItemsInShopConfig cfg = DisableItemsInShop.BoundConfig;
+        DisableItemsInShopConfig cfg = BoundConfig;
 
         if (ShouldDisableItem(Name, cfg))
         {
             __instance.ToggleDisable(true);
-            DisableItemsInShop.Logger.LogDebug($"Disabled item usage: {Name}");
+            Logger.LogDebug($"Disabled item usage: {Name}");
         }
     }
 
@@ -27,7 +27,6 @@ static class ItemTogglePatch
     {
         bool isExplosive = cfg.Explosives.Value && (itemName.StartsWith("Item Grenade") || itemName.StartsWith("Item Mine"));
         bool isGun = cfg.Guns.Value && itemName.StartsWith("Item Gun");
-        DisableItemsInShop.Logger.LogDebug($"custom items: {cfg.CustomItems.Value}");
 
         bool isCustomItem = cfg.CustomItems.Value.Split(',')
             .Where(item => !string.IsNullOrEmpty(item))

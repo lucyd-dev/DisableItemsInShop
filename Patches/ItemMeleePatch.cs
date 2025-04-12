@@ -1,6 +1,7 @@
 using HarmonyLib;
+using static DisableItemsInShop.Plugin;
 
-namespace DisableItemsInShop;
+namespace DisableItemsInShop.Patches;
 
 [HarmonyPatch(typeof(ItemMelee))]
 static class ItemMeleePatch
@@ -17,15 +18,15 @@ static class ItemMeleePatch
     [HarmonyPostfix]
     private static void Start_Postfix(ItemMelee __instance)
     {
-        if (!MeleeDisabled) return;
-        DisableItemsInShop.Logger.LogDebug($"Disabled item usage: {__instance.name}");
+        if (!IsMeleeDisabled) return;
+        Logger.LogDebug($"Disabled item usage: {__instance.name}");
     }
 
     [HarmonyPatch("Update")]
     [HarmonyPrefix]
     private static bool Update_Prefix(ItemMelee __instance)
     {
-        if (!MeleeDisabled) return true;
+        if (!IsMeleeDisabled) return true;
 
         return false;
     }
