@@ -5,7 +5,13 @@ namespace DisableItemsInShop;
 [HarmonyPatch(typeof(ItemMelee))]
 static class ItemMeleePatch
 {
-    private static bool MeleeDisabled = DisableItemsInShop.ShouldDisable() && DisableItemsInShop.BoundConfig.Melee.Value;
+    private static bool IsMeleeDisabled
+    {
+        get
+        {
+            return IsInDisabledLevel && BoundConfig.Melee.Value;
+        }
+    }
 
     [HarmonyPatch("Start")]
     [HarmonyPostfix]

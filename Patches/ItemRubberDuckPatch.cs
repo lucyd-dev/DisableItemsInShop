@@ -5,7 +5,13 @@ namespace DisableItemsInShop;
 [HarmonyPatch(typeof(ItemRubberDuck))]
 static class ItemRubberDuckPatch
 {
-    private static bool RubberDuckDisabled = DisableItemsInShop.ShouldDisable() && DisableItemsInShop.BoundConfig.RubberDuck.Value;
+    private static bool IsRubberDuckDisabled
+    {
+        get
+        {
+            return IsInDisabledLevel && BoundConfig.RubberDuck.Value;
+        }
+    }
 
     [HarmonyPatch("Start")]
     [HarmonyPostfix]
