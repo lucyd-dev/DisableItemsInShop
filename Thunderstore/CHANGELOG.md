@@ -1,4 +1,9 @@
+## v1.3.1
+
+- fixed a bug where items could be sometimes disabled, when they shouldn't
+
 ## v1.3.0
+
 - Added support for disabling custom items
 
 ## v1.2.0
