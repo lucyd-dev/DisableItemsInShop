@@ -10,13 +10,19 @@ If you like my mod, I would very appreciate if u leave a like 💜
 ## Configuration
 
 **General:**
-- Set where you want to disable items (default: "Shop")
-- Disable explosives as grenades & mines (default: true)
-- Disable guns (default: false)
-- Disable melees (default: false)
-- Disable rubber duck (default: false)
+
+| Options                         | Default   |
+|:--------------------------------|----------:|
+| Level (Shop/Lobby/Both)         | Shop      |
+| Explosives (grenades & mines)   | True      |
+| Guns                            | False     |
+| Melees                          | False     |
+| Drones                          | False     |
+| Orbs                            | False     |
+| Rubber duck                     | False     |
 
 **Custom:**
+
 - Disable Custom Items
   - Needs to be a comma-separated list
   - Only works for toggleable items like the guns, mines, etc.
