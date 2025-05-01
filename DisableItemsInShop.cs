@@ -43,6 +43,7 @@ public class Plugin : BaseUnityPlugin
         BoundConfig = new DisableItemsInShopConfig(Config);
 
         harmony.PatchAll(typeof(ItemTogglePatch));
+        harmony.PatchAll(typeof(ItemGunPatch));
         harmony.PatchAll(typeof(ItemMeleePatch));
         harmony.PatchAll(typeof(ItemRubberDuckPatch));
 
