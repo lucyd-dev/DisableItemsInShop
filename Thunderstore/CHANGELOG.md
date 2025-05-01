@@ -1,6 +1,12 @@
+## v1.4.0
+
+- Added support to also disable drones & orbs
+- Disabling guns missfiring if disabled
+- Optimized the check for custom items
+
 ## v1.3.1
 
-- fixed a bug where items could be sometimes disabled, when they shouldn't
+- Fixed a bug where items could be sometimes disabled, when they shouldn't
 
 ## v1.3.0
 
