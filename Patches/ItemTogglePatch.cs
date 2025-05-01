@@ -1,5 +1,6 @@
-﻿using HarmonyLib;
+﻿using System;
 using System.Linq;
+using HarmonyLib;
 using static DisableItemsInShop.Plugin;
 
 namespace DisableItemsInShop.Patches;
@@ -13,13 +14,12 @@ static class ItemTogglePatch
     {
         if (!IsInDisabledLevel) return;
 
-        string Name = __instance.name;
         DisableItemsInShopConfig cfg = BoundConfig;
 
-        if (ShouldDisableItem(Name, cfg))
+        if (ShouldDisableItem(__instance.name, cfg))
         {
             __instance.ToggleDisable(true);
-            Logger.LogDebug($"Disabled item usage: {Name}");
+            Logger.LogDebug($"Disabled item usage: {__instance.name}");
         }
     }
 
@@ -29,11 +29,8 @@ static class ItemTogglePatch
         bool isGun = cfg.Guns.Value && itemName.StartsWith("Item Gun");
         bool isDrone = cfg.Drones.Value && itemName.StartsWith("Item Drone");
         bool isOrb = cfg.Orbs.Value && itemName.StartsWith("Item Orb");
-
-        bool isCustomItem = cfg.CustomItems.Value.Split(',')
-            .Where(item => !string.IsNullOrEmpty(item))
-            .Select(item => item.Trim().ToLower())
-            .Any(item => itemName.ToLower().Contains(item));
+        bool isCustomItem = cfg.CustomItemsList
+            .Any(item => itemName.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
 
         return isExplosive || isGun || isDrone || isOrb || isCustomItem;
     }

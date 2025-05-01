@@ -1,7 +1,8 @@
-using System.Reflection;
 using System.Collections.Generic;
-using HarmonyLib;
+using System.Linq;
+using System.Reflection;
 using BepInEx.Configuration;
+using HarmonyLib;
 
 namespace DisableItemsInShop;
 
@@ -16,7 +17,9 @@ class DisableItemsInShopConfig
     public readonly ConfigEntry<bool> Drones;
     public readonly ConfigEntry<bool> Orbs;
     public readonly ConfigEntry<bool> RubberDuck;
-    public readonly ConfigEntry<string> CustomItems;
+    private readonly ConfigEntry<string> CustomItems;
+    private List<string> _customItemsList;
+    public IReadOnlyList<string> CustomItemsList => _customItemsList;
 
     public DisableItemsInShopConfig(ConfigFile cfg)
     {
@@ -43,6 +46,7 @@ class DisableItemsInShopConfig
             "",
             new ConfigDescription("Comma-separated list of item name patterns to disable. Only works for toggleable items like guns, mines, etc. (ex. Rifle, Drone, ...)")
         );
+        CacheCustomItemsList();
 
         ClearOrphanedEntries(cfg);
         cfg.Save();
@@ -54,5 +58,14 @@ class DisableItemsInShopConfig
         PropertyInfo orphanedEntriesProp = AccessTools.Property(typeof(ConfigFile), "OrphanedEntries");
         var orphanedEntries = (Dictionary<ConfigDefinition, string>)orphanedEntriesProp.GetValue(cfg);
         orphanedEntries.Clear();
+    }
+
+    public void CacheCustomItemsList()
+    {
+        _customItemsList = CustomItems.Value
+            .Split(',')
+            .Select(item => item.Trim())
+            .Where(item => !string.IsNullOrEmpty(item))
+            .ToList();
     }
 }
