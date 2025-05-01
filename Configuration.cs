@@ -12,7 +12,9 @@ class DisableItemsInShopConfig
     public readonly ConfigEntry<string> Level;
     public readonly ConfigEntry<bool> Explosives;
     public readonly ConfigEntry<bool> Guns;
-    public readonly ConfigEntry<bool> Melee;
+    public readonly ConfigEntry<bool> Melees;
+    public readonly ConfigEntry<bool> Drones;
+    public readonly ConfigEntry<bool> Orbs;
     public readonly ConfigEntry<bool> RubberDuck;
     public readonly ConfigEntry<string> CustomItems;
 
@@ -31,7 +33,9 @@ class DisableItemsInShopConfig
         );
         Explosives = cfg.Bind("General", "DisableExplosives", true);
         Guns = cfg.Bind("General", "DisableGuns", false);
-        Melee = cfg.Bind("General", "DisableMelees", false);
+        Melees = cfg.Bind("General", "DisableMelees", false);
+        Drones = cfg.Bind("General", "DisableDrones", false);
+        Orbs = cfg.Bind("General", "DisableOrbs", false);
         RubberDuck = cfg.Bind("General", "DisableRubberDuck", false);
         CustomItems = cfg.Bind(
             "Custom",

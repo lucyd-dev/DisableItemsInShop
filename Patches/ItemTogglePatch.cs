@@ -27,12 +27,14 @@ static class ItemTogglePatch
     {
         bool isExplosive = cfg.Explosives.Value && (itemName.StartsWith("Item Grenade") || itemName.StartsWith("Item Mine"));
         bool isGun = cfg.Guns.Value && itemName.StartsWith("Item Gun");
+        bool isDrone = cfg.Drones.Value && itemName.StartsWith("Item Drone");
+        bool isOrb = cfg.Orbs.Value && itemName.StartsWith("Item Orb");
 
         bool isCustomItem = cfg.CustomItems.Value.Split(',')
             .Where(item => !string.IsNullOrEmpty(item))
             .Select(item => item.Trim().ToLower())
             .Any(item => itemName.ToLower().Contains(item));
 
-        return isExplosive || isGun || isCustomItem;
+        return isExplosive || isGun || isDrone || isOrb || isCustomItem;
     }
 }

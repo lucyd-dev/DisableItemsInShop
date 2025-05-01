@@ -10,7 +10,7 @@ static class ItemMeleePatch
     {
         get
         {
-            return IsInDisabledLevel && BoundConfig.Melee.Value;
+            return IsInDisabledLevel && BoundConfig.Melees.Value;
         }
     }
 
