@@ -1,3 +1,7 @@
+## v1.5.0 (R.E.P.O v0.2.0 update)
+
+- Added the new C.A.R.T Laser & Cannon as an option under CartWeapons, default is true
+
 ## v1.4.0
 
 - Added support to also disable drones & orbs
