@@ -12,6 +12,7 @@ class DisableItemsInShopConfig
 
     public readonly ConfigEntry<string> Level;
     public readonly ConfigEntry<bool> Explosives;
+    public readonly ConfigEntry<bool> CartWeapons;
     public readonly ConfigEntry<bool> Guns;
     public readonly ConfigEntry<bool> Melees;
     public readonly ConfigEntry<bool> Drones;
@@ -35,6 +36,7 @@ class DisableItemsInShopConfig
             )
         );
         Explosives = cfg.Bind("General", "DisableExplosives", true);
+        CartWeapons = cfg.Bind("General", "DisableCartWeapons", true);
         Guns = cfg.Bind("General", "DisableGuns", false);
         Melees = cfg.Bind("General", "DisableMelees", false);
         Drones = cfg.Bind("General", "DisableDrones", false);

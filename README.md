@@ -15,6 +15,7 @@ If you like my mod, I would very appreciate if u leave a like 💜
 |:--------------------------------|----------:|
 | Level (Shop/Lobby/Both)         | Shop      |
 | Explosives (grenades & mines)   | True      |
+| Cart weapons (laser & cannon)   | True      |
 | Guns                            | False     |
 | Melees                          | False     |
 | Drones                          | False     |
