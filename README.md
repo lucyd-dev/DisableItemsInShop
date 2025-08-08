@@ -4,16 +4,15 @@
 [![Thunderstore Version](https://img.shields.io/thunderstore/v/LucydDemon/DisableItemsInShop?style=for-the-badge&logo=thunderstore&logoColor=white)](https://thunderstore.io/c/repo/p/LucydDemon/DisableItemsInShop/)
 [![Thunderstore Downloads](https://img.shields.io/thunderstore/dt/LucydDemon/DisableItemsInShop?style=for-the-badge&logo=thunderstore&logoColor=white)](https://thunderstore.io/c/repo/p/LucydDemon/DisableItemsInShop/)
 
-As the title already tells, this mod disables using items inside the shop. No more flying items across the room.\
-If you like my mod, I would very appreciate if u leave a like 💜
+As the title already tells, this mod let you disabling the use of certain items. No more flying items across the shop or wasted util in your lobby.\
+If you like my mod, I would really appreciate if you leave a like 💜
 
 ## Configuration
 
-**General:**
+There are two sections, once each for the disabling item in the shop and one for the lobby.
 
 | Options                         | Default   |
 |:--------------------------------|----------:|
-| Level (Shop/Lobby/Both)         | Shop      |
 | Explosives (grenades & mines)   | True      |
 | Cart weapons (laser & cannon)   | True      |
 | Guns                            | False     |
@@ -21,12 +20,12 @@ If you like my mod, I would very appreciate if u leave a like 💜
 | Drones                          | False     |
 | Orbs                            | False     |
 | Rubber duck                     | False     |
+| Custom items                    | None      |
 
-**Custom:**
+### Disable Custom Items
 
-- Disable Custom Items
-  - Needs to be a comma-separated list
-  - Only works for toggleable items like the guns, mines, etc.
+- Needs to be a comma-separated list
+- Only works for toggleable items like the guns, mines, etc.
 
 > [!IMPORTANT]
 > If you use a mod manager like Gale, you can change the .cfg settings in the launcher itself or you can use [REPOConfig](https://thunderstore.io/c/repo/p/nickklmao/REPOConfig/) to change it directly ingame.\

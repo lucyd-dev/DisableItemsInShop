@@ -7,7 +7,7 @@ repository = "https://thunderstore.io"
 [package]
 namespace = "LucydDemon"
 name = "DisableItemsInShop"
-description = "Disables using items in the shop (& lobby). Fully customizable"
+description = "Disables using items in the shop & lobby. Fully customizable"
 websiteUrl = "https://github.com/lucyd-dev/DisableItemsInShop/"
 containsNsfwContent = false
 [package.dependencies]
