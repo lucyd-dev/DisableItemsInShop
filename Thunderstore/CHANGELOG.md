@@ -1,3 +1,9 @@
+## v2.0.0
+
+- Changed the config structure so that you can now disable items for the shop and the lobby individually
+
+**Note: You may need to change the configuration again to your liking as this is a breaking change.**
+
 ## v1.5.0 (R.E.P.O v0.2.0 update)
 
 - Added the new C.A.R.T Laser & Cannon as an option under CartWeapons, default is true
