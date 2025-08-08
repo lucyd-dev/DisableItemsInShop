@@ -12,26 +12,30 @@ static class ItemTogglePatch
     [HarmonyPostfix]
     private static void Start_Postfix(ItemToggle __instance)
     {
-        if (!IsInDisabledLevel) return;
-
-        DisableItemsInShopConfig cfg = BoundConfig;
-
-        if (ShouldDisableItem(__instance.name, cfg))
+        if (ShouldDisableItem(__instance.name))
         {
             __instance.ToggleDisable(true);
             Logger.LogDebug($"Disabled item usage: {__instance.name}");
         }
     }
 
-    private static bool ShouldDisableItem(string itemName, DisableItemsInShopConfig cfg)
+    private static bool ShouldDisableItem(string itemName)
     {
-        bool isExplosive = cfg.Explosives.Value && (itemName.StartsWith("Item Grenade") || itemName.StartsWith("Item Mine"));
-        bool isCartWeapon = cfg.CartWeapons.Value && (itemName.StartsWith("Item Cart Cannon") || itemName.StartsWith("Item Cart Laser"));
-        bool isGun = cfg.Guns.Value && itemName.StartsWith("Item Gun");
-        bool isDrone = cfg.Drones.Value && itemName.StartsWith("Item Drone");
-        bool isOrb = cfg.Orbs.Value && itemName.StartsWith("Item Orb");
-        bool isCustomItem = cfg.CustomItemsList
-            .Any(item => itemName.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
+        if (ActiveConfig == null) return false;
+
+        bool explosives = ActiveConfig.Explosives.Value;
+        bool cartWeapons = ActiveConfig.CartWeapons.Value;
+        bool guns = ActiveConfig.Guns.Value;
+        bool drones = ActiveConfig.Drones.Value;
+        bool orbs = ActiveConfig.Orbs.Value;
+
+        bool isExplosive = explosives && (itemName.StartsWith("Item Grenade") || itemName.StartsWith("Item Mine"));
+        bool isCartWeapon = cartWeapons && (itemName.StartsWith("Item Cart Cannon") || itemName.StartsWith("Item Cart Laser"));
+        bool isGun = guns && itemName.StartsWith("Item Gun");
+        bool isDrone = drones && itemName.StartsWith("Item Drone");
+        bool isOrb = orbs && itemName.StartsWith("Item Orb");
+
+        bool isCustomItem = ActiveConfig.CustomItemsList.Any(item => itemName.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
 
         return isExplosive || isCartWeapon || isGun || isDrone || isOrb || isCustomItem;
     }

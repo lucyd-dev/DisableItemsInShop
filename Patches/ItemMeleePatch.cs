@@ -6,13 +6,7 @@ namespace DisableItemsInShop.Patches;
 [HarmonyPatch(typeof(ItemMelee))]
 static class ItemMeleePatch
 {
-    private static bool IsMeleeDisabled
-    {
-        get
-        {
-            return IsInDisabledLevel && BoundConfig.Melees.Value;
-        }
-    }
+    private static bool IsMeleeDisabled => ActiveConfig != null && ActiveConfig.Melees.Value;
 
     [HarmonyPatch("Start")]
     [HarmonyPostfix]

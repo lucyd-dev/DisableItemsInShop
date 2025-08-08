@@ -6,13 +6,7 @@ namespace DisableItemsInShop.Patches;
 [HarmonyPatch(typeof(ItemGun))]
 static class ItemGunPatch
 {
-    private static bool IsGunDisabled
-    {
-        get
-        {
-            return IsInDisabledLevel && BoundConfig.Guns.Value;
-        }
-    }
+    private static bool IsGunDisabled => ActiveConfig != null && ActiveConfig.Guns.Value;
 
     [HarmonyPatch("Start")]
     [HarmonyPostfix]

@@ -6,13 +6,7 @@ namespace DisableItemsInShop.Patches;
 [HarmonyPatch(typeof(ItemRubberDuck))]
 static class ItemRubberDuckPatch
 {
-    private static bool IsRubberDuckDisabled
-    {
-        get
-        {
-            return IsInDisabledLevel && BoundConfig.RubberDuck.Value;
-        }
-    }
+    private static bool IsRubberDuckDisabled => ActiveConfig != null && ActiveConfig.RubberDuck.Value;
 
     [HarmonyPatch("Start")]
     [HarmonyPostfix]

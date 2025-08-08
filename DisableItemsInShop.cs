@@ -1,4 +1,5 @@
-﻿using BepInEx;
+﻿#nullable enable
+using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
@@ -14,23 +15,8 @@ public class Plugin : BaseUnityPlugin
     private ManualLogSource _logger => base.Logger;
     private readonly Harmony harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
     internal static DisableItemsInShopConfig BoundConfig { get; private set; } = null!;
-
-    public static bool IsInDisabledLevel
-    {
-        get
-        {
-            bool inShop = SemiFunc.RunIsShop();
-            bool inLobby = SemiFunc.RunIsLobby();
-
-            return BoundConfig.Level.Value switch
-            {
-                "Shop" => inShop,
-                "Lobby" => inLobby,
-                "Both" => inShop || inLobby,
-                _ => false
-            };
-        }
-    }
+    internal static DisableItemsInShopConfig.Section? ActiveConfig
+        => SemiFunc.RunIsShop() ? BoundConfig.Shop : SemiFunc.RunIsLobby() ? BoundConfig.Lobby : null;
 
     private void Awake()
     {
@@ -47,7 +33,7 @@ public class Plugin : BaseUnityPlugin
         harmony.PatchAll(typeof(ItemMeleePatch));
         harmony.PatchAll(typeof(ItemRubberDuckPatch));
 
-        Logger.LogInfo($"{MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION} by {MyPluginInfo.PLUGIN_AUTHOR} has loaded!");
+        Logger.LogInfo($"🚫 {MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION} by {MyPluginInfo.PLUGIN_AUTHOR} initialized!");
     }
 
     private void OnDestroy()
